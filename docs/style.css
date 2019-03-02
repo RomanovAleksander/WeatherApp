@@ -2,6 +2,7 @@ body {
     font-size: 14px;
     margin: 0;
     font-family: 'Roboto', sans-serif;
+    color: #E8C88B;
 }
 
 canvas {
@@ -61,11 +62,11 @@ canvas {
     padding-left: 10px;
     font-size: 25px;
     outline: none;
-    color: black;
+    color: #E8C88B;
 }
 
 .search-input::placeholder {
-    color: black;
+    color: #E8C88B;
 }
 
 .search-btn {
@@ -87,12 +88,14 @@ canvas {
     height: 1em;
     overflow: visible;
     vertical-align: -.125em;
+    fill: #E8C88B;
 }
 
 #units {
     width: 50px;
     cursor: pointer;
     outline: none;
+    color: #E8C88B;
 }
 
 #units:hover {
@@ -141,16 +144,17 @@ option {
     border: none;
 }
 
-.btn-add-favourites:hover {
-    color: white;
-}
-
 .favourite-icon {
     display: inline-block;
     font-size: inherit;
     height: 20px;
     overflow: visible;
     vertical-align: -.125em;
+    color: #E8C88B;
+}
+
+.favourite-icon:hover {
+    color: white;
 }
 
 .forecast-container {
@@ -231,6 +235,7 @@ option {
 }
 
 .icon {
+    fill: #E8C88B;
     height: 100%;
     width: 100%;
     text-align: center;
