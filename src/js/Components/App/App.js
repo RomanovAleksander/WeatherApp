@@ -1,5 +1,17 @@
-export default class App {
+import Component from "../../framework/Component.js"
+import {Temperature} from "../Temperature";
+
+export default class App extends Component{
     constructor(host) {
-        host.innerHTML = 'I am Weather!'
+        super(host);
+    }
+
+    render() {
+        const t1 = document.createElement('div');
+        new Temperature(t1);
+        const t2 = document.createElement('div');
+        new Temperature(t2);
+
+        return ['Temperature range', t1, t2];
     }
 }
