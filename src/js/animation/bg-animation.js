@@ -1,4 +1,4 @@
-(function () {
+export function snowAnimation() {
     function a() {
         e = window.innerWidth;
         t = window.innerHeight;
@@ -76,4 +76,4 @@
         a();
         f()
 
-})();
+}

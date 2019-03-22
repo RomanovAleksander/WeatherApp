@@ -7,12 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather App</title>
     <link type="text/css" rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
 </head>
 <body>
+<!--<embed src="" autostart="true" hidden="false" loop="false" width="300" height="65" align="bottom">-->
 <div class="wrapper">
+    <h2 class="hide">KOTTANS</h2>
+    <div class="cat"></div>
     <canvas id="intro-canvas"></canvas>
+    <canvas id="canvas"></canvas>
+    <div class="history">
+        <h3>HISTORY</h3>
+        <p>London</p>
+        <p>New York</p>
+    </div>
     <div class="weather-wrapper">
-        <div class="history"></div>
         <div class="weather-container">
             <div class="search-container">
                 <input class="search-input"
@@ -22,14 +31,14 @@
                        required
                        autofocus
                        autocomplete="off">
-                <div class="search-btn">
+                <button class="search-btn">
                     <svg class="search-icon" aria-hidden="true" data-prefix="fas"
                          data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                          data-fa-i2svg="">
                         <path fill="currentColor"
                               d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
                     </svg>
-                </div>
+                </button>
                 <select id="units" title="Select units">
                     <option value="GC" selected>°C</option>
                     <option value="FA">°F</option>
@@ -124,11 +133,23 @@
                         <div class="container">
                             <div class="temperature">
                                 <div class="min">
-                                    <svg class="search-icon" aria-hidden="true" data-prefix="fas" data-icon="long-arrow-alt-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M168 345.941V44c0-6.627-5.373-12-12-12h-56c-6.627 0-12 5.373-12 12v301.941H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.569 9.373 33.941 0l86.059-86.059c15.119-15.119 4.411-40.971-16.971-40.971H168z"></path></svg>
-                                    5°</div>
+                                    <svg class="search-icon" aria-hidden="true" data-prefix="fas"
+                                         data-icon="long-arrow-alt-down" role="img" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 256 512" data-fa-i2svg="">
+                                        <path fill="currentColor"
+                                              d="M168 345.941V44c0-6.627-5.373-12-12-12h-56c-6.627 0-12 5.373-12 12v301.941H41.941c-21.382 0-32.09 25.851-16.971 40.971l86.059 86.059c9.373 9.373 24.569 9.373 33.941 0l86.059-86.059c15.119-15.119 4.411-40.971-16.971-40.971H168z"></path>
+                                    </svg>
+                                    5°
+                                </div>
                                 <div class="max">
-                                    <svg class="search-icon" aria-hidden="true" data-prefix="fas" data-icon="long-arrow-alt-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" data-fa-i2svg=""><path fill="currentColor" d="M88 166.059V468c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12V166.059h46.059c21.382 0 32.09-25.851 16.971-40.971l-86.059-86.059c-9.373-9.373-24.569-9.373-33.941 0l-86.059 86.059c-15.119 15.119-4.411 40.971 16.971 40.971H88z"></path></svg>
-                                    10°</div>
+                                    <svg class="search-icon" aria-hidden="true" data-prefix="fas"
+                                         data-icon="long-arrow-alt-up" role="img" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 256 512" data-fa-i2svg="">
+                                        <path fill="currentColor"
+                                              d="M88 166.059V468c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12V166.059h46.059c21.382 0 32.09-25.851 16.971-40.971l-86.059-86.059c-9.373-9.373-24.569-9.373-33.941 0l-86.059 86.059c-15.119 15.119-4.411 40.971 16.971 40.971H88z"></path>
+                                    </svg>
+                                    10°
+                                </div>
                             </div>
                             <div class="current-temperature">7°</div>
                         </div>
@@ -161,7 +182,8 @@
                     <div class="weekly-date">05.03.2019</div>
                 </div>
                 <div class="weekly-container">
-                    <div class="weekly-icon"><svg class="icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    <div class="weekly-icon">
+                        <svg class="icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
 <path d="M1.56,16.9c0,0.9,0.22,1.73,0.66,2.49s1.04,1.36,1.8,1.8c0.76,0.44,1.58,0.66,2.47,0.66h10.83c0.89,0,1.72-0.22,2.48-0.66
 	c0.76-0.44,1.37-1.04,1.81-1.8c0.44-0.76,0.67-1.59,0.67-2.49c0-0.66-0.14-1.33-0.42-2C22.62,13.98,23,12.87,23,11.6
@@ -184,7 +206,8 @@
 	c-0.24,0-0.44,0.08-0.6,0.24C23.34,17.47,23.25,17.67,23.25,17.91z M24.72,11.6c0,0.23,0.09,0.42,0.26,0.58
 	c0.16,0.16,0.37,0.24,0.61,0.24h2.04c0.23,0,0.42-0.08,0.58-0.23s0.23-0.35,0.23-0.59c0-0.24-0.08-0.44-0.23-0.6
 	s-0.35-0.25-0.58-0.25h-2.04c-0.24,0-0.44,0.08-0.61,0.25C24.8,11.17,24.72,11.37,24.72,11.6z"/>
-</svg></div>
+</svg>
+                    </div>
                     <div class="weekly-desk">Sunny</div>
                     <div class="weekly-temp">20°</div>
                     <div class="weekly-time">12:00</div>
@@ -273,7 +296,8 @@
                     <div class="weekly-date">08.03.2019</div>
                 </div>
                 <div class="weekly-container">
-                    <div class="weekly-icon"><svg class="icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    <div class="weekly-icon">
+                        <svg class="icon" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
 <path d="M1.48,21.1c0,0.24,0.09,0.44,0.27,0.6c0.17,0.17,0.37,0.25,0.61,0.25h5.88c0.26,0,0.48,0.09,0.68,0.28
 	c0.2,0.19,0.3,0.42,0.3,0.68s-0.1,0.5-0.3,0.69c-0.2,0.19-0.42,0.29-0.68,0.29c-0.26,0-0.48-0.1-0.68-0.3
@@ -306,7 +330,8 @@
 	c0-0.24,0.08-0.44,0.24-0.62c0.16-0.16,0.35-0.24,0.57-0.24h2.02c0.23,0,0.43,0.09,0.61,0.26s0.26,0.37,0.26,0.6
 	c0,0.23-0.09,0.43-0.26,0.6c-0.18,0.17-0.38,0.25-0.61,0.25h-2.02c-0.23,0-0.42-0.08-0.58-0.25C24.89,11.99,24.82,11.79,24.82,11.55
 	z"/>
-</svg></div>
+</svg>
+                    </div>
                     <div class="weekly-desk">Windy</div>
                     <div class="weekly-temp">15°</div>
                     <div class="weekly-time">18:00</div>
@@ -314,10 +339,15 @@
                 </div>
             </div>
         </div>
-        <div class="favorites"></div>
+    </div>
+    <div class="favorites">
+        <h3>FAVOURITES</h3>
+        <p>Kyiv</p>
+        <p>Lviv</p>
     </div>
 </div>
 
-<script src="bg-animation.js"></script>
+<script src="./bg.js"></script>
+<script src="./bg-animation.js"></script>
 </body>
 </html>

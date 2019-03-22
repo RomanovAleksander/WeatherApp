@@ -1,6 +1,6 @@
 {
   "name": "weather-app",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Weather On Complemental Steroids",
   "main": "index.html",
   "repository": "https://github.com/RomanovAleksander/weather-app.git",
@@ -13,7 +13,7 @@
     "build-dev": "parcel build ./src/index.html --no-minify --public-url ./",
     "prebuild": "shx rm -rf dist/",
     "build": "parcel build ./src/index.html --public-url ./",
-    "publish": "push-dir --dir=dist --branch=gh-pages"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "devDependencies": {
     "shx": "^0.3.2"

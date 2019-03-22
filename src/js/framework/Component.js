@@ -1,32 +1,115 @@
 export default class Component {
-    constructor(host) {
+    constructor(host, props = {}, state = {}) {
         this.host = host;
+        this.props = props;
+        this.state = state;
+        this.init();
         this._render();
+    }
+
+    init() {
+    }
+
+    setState(state){
+        // update to Object.assifn
+        Object.keys(state).forEach(prop => {
+            this.state[prop] = state[prop];
+        });
+        this._render();
+    }
+
+    updateState(stateDelta) {
+        this.state = Object.assign({}, this.state, stateDelta);
+        this.state = nextState;
+        this._render(this.state);
+        return nextState;
     }
 
     _render() {
         this.host.innerHTML = "";
+        let content = this.render();
 
-        const content = this.render();
-        if (typeof content === 'string') {
-            this.host.innerHTML = content;
-        } else {
-            content.map(item => {
-                if (typeof item === 'string') {
-                    const htmlElement = document.createElement('div');
-                    htmlElement.innerHTML = item;
-                    return htmlElement;
-                } else {
-                    return item;
-                }
-            }) // [string|HTMLElement] => [HTMLElement]
-                .forEach(htmlElement => {
-                    this.host.appendChild(htmlElement);
-                })
+        if (!Array.isArray(content)) {
+            content = [ content ];
         }
+
+        // console.log(content);
+
+        content.map(item => this._vDomPrototypeElementToHtmlElement(item)) // [string|HTMLElement] => [HTMLElement]
+            .forEach(htmlElement => {
+                this.host.appendChild(htmlElement);
+            });
+    }
+    /* @returns {string|[string|HTMLElement|Component]} */
+    render() {
+        return 'OMG! They wanna see me!!!!!! Aaaaaa';
     }
 
-    /* @return {string|[HTMLElement]} */
-    render() {
+    /**
+     *
+     * @param {string|HTMLElement|Object} element
+     * @private
+     */
+    _vDomPrototypeElementToHtmlElement(element) {
+        if (typeof element === 'string') {
+            let container;
+            const containsHtmlTags = /[<>&]/.test(element);
+            if (containsHtmlTags) {
+                container = document.createElement('div');
+                container.innerHTML = element;
+            } else {
+                container = document.createTextNode(element);
+            }
+            return container;
+        } else {
+            if (element.tag) {
+                if (typeof element.tag === 'function') {
+
+                    const container = document.createDocumentFragment();
+                    new element.tag(container, element.props);
+
+                    return container;
+                } else {
+                    // string
+                    const container = document.createElement(element.tag);
+                    if (element.content !== undefined) {
+                        container.innerHTML = element.content;
+                    }
+
+                    // ensure following element properties are Array
+                    ['classList', 'attributes', 'children'].forEach(item => {
+                        if (element[item] && !Array.isArray(element[item])) {
+                            element[item] = [element[item]];
+                        }
+                    });
+                    if (element.classList) {
+                        container.classList.add(...element.classList);
+                    }
+                    if (element.attributes) {
+                        element.attributes.forEach(attributeSpec => {
+                            container.setAttribute(attributeSpec.name, attributeSpec.value);
+                        });
+                    }
+
+                    // process eventHandlers
+                    if (element.eventHandlers) {
+                        Object.keys(element.eventHandlers).forEach(eventType => {
+                            container.addEventListener(eventType, element.eventHandlers[eventType]);
+                        });
+                    }
+
+                    // process children
+                    if (element.children) {
+                        element.children.forEach(el => {
+                            const htmlElement = this._vDomPrototypeElementToHtmlElement(el);
+                            container.appendChild(htmlElement);
+                        });
+                    }
+
+                    return container;
+                }
+            }
+            return element;
+        }
     }
 }
