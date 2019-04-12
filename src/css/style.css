@@ -15,6 +15,7 @@ body {
     background-size: cover;
     overflow: hidden;
     z-index: -1;
+    top: 0;
     left: 0;
     margin-left: -50px;
     transition: left 5s cubic-bezier(0.0, 0.5, 0.5, 1.0);
@@ -27,6 +28,7 @@ body {
 
 
 .hide {
+    top: 0;
     left: 0;
     z-index: -1;
     position: absolute;

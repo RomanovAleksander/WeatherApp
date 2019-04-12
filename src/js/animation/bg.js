@@ -77,3 +77,5 @@ export function moonAnimation() {
     ifResize();
     draw();
 }
+
+moonAnimation();

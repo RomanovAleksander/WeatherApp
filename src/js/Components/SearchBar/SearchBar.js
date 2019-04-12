@@ -1,5 +1,5 @@
 import Component from "../../framework/Component";
-import {snowAnimation} from "../../animation/bg-animation";
+// import {snowAnimation} from "../../animation/bg-animation";
 
 export default class SearchBar extends Component {
     constructor(host, props) {
@@ -9,7 +9,7 @@ export default class SearchBar extends Component {
     getCity() {
         const city = document.querySelector('.search-input');
         this.props.getWeather(city.value);
-        snowAnimation();
+        // snowAnimation();
     }
 
 

@@ -77,3 +77,5 @@ export function snowAnimation() {
         f()
 
 }
+
+snowAnimation();

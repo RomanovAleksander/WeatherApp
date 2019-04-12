@@ -8,8 +8,8 @@ import {FavouriteLocations} from "../FavouriteLocations";
 
 import WeatherDataService from '../../Services/WeatherDataService';
 
-import {snowAnimation} from "../../animation/bg-animation";
-import {moonAnimation} from "../../animation/bg";
+// import {snowAnimation} from "../../animation/bg-animation";
+// import {moonAnimation} from "../../animation/bg";
 
 export default class App extends Component {
     constructor(host, props, state = {name: 'Kyiv', units: 'C', load: false}) {
@@ -33,14 +33,14 @@ export default class App extends Component {
     onServerResponse(current, forecast) {
         this.props = {current, forecast};
         this.setState({load: true});
-        snowAnimation();
-        moonAnimation();
+        // snowAnimation();
+        // moonAnimation();
     }
 
     changeUnits() {
         this.state.units === 'C' ? this.setState({units: 'F'}) : this.setState({units: 'C'});
         WeatherDataService.subscribe(this.onServerResponse, this.state.name, this.state.units);
-        snowAnimation();
+        // snowAnimation();
     }
 
 
@@ -49,7 +49,7 @@ export default class App extends Component {
             return [
                 {
                     tag: 'div',
-                    classList: ['wrapper'],
+
                     children: [
                         {
                             tag: 'h2',
@@ -60,19 +60,18 @@ export default class App extends Component {
                             tag: 'div',
                             classList: ['cat'],
                         },
-                        {
-                            tag: 'canvas',
-                            attributes: [
-                                {name: 'id', value: 'canvas'},
-                            ],
-                        },
-                        {
-                            tag: 'canvas',
-                            attributes: [
-                                {name: 'id', value: 'intro-canvas'},
-                            ],
-                        },
-
+                        // {
+                        //     tag: 'canvas',
+                        //     attributes: [
+                        //         {name: 'id', value: 'canvas'},
+                        //     ],
+                        // },
+                        // {
+                        //     tag: 'canvas',
+                        //     attributes: [
+                        //         {name: 'id', value: 'intro-canvas'},
+                        //     ],
+                        // },
                         {
                             tag: 'div',
                             classList: ['weather-wrapper'],
